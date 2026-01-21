@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction to Economics Quiz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+```
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+        background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+        min-height: 100vh;
+        padding: 20px;
+    }
+    
+    .container {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+    
+    .header {
+        background: white;
+        border-radius: 20px;
+        padding: 30px;
+        margin-bottom: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    
+    .header h1 {
+        color: #333;
+        font-size: 2.5em;
+        margin-bottom: 15px;
+    }
+    
+    .section-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 15px;
+    }
+    
+    .section-title {
+        color: #666;
+        font-size: 1.1em;
+    }
+    
+    .score {
+        color: #11998e;
+        font-weight: bold;
+        font-size: 1.2em;
+    }
+    
+    .progress-bar {
+        background: #e0e0e0;
+        height: 12px;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-bottom: 10px;
+    }
+    
+    .progress-fill {
+        background: #11998e;
+        height: 100%;
+        transition: width 0.3s ease;
+    }
+    
+    .progress-text {
+        color: #999;
+        font-size: 0.9em;
+    }
+    
+    .question-card {
+        background: white;
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    
+    .question-badge {
+        display: inline-block;
+        background: #d4f4dd;
+        color: #11998e;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 0.9em;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+    
+    .question-text {
+        color: #333;
+        font-size: 1.8em;
+        font-weight: 600;
+        margin-bottom: 30px;
+        line-height: 1.4;
+    }
+    
+    .options {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+    
+    .option {
+        background: white;
+        border: 3px solid #e0e0e0;
+        padding: 20px;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-size: 1.1em;
+    }
+    
+    .option:hover:not(.disabled) {
+        border-color: #11998e;
+        background: #f0fdf4;
+        transform: translateX(5px);
+    }
+    
+    .option.correct {
+        border-color: #4caf50;
+        background: #e8f5e9;
+    }
+    
+    .option.wrong {
+        border-color: #f44336;
+        background: #ffebee;
+    }
+    
+    .option.disabled {
+        cursor: default;
+        opacity: 0.5;
+    }
+    
+    .feedback {
+        background: #f5f5f5;
+        padding: 20px;
+        border-radius: 12px;
+        margin-bottom: 20px;
+    }
+    
+    .feedback.correct {
+        background: #e8f5e9;
+        color: #2e7d32;
+    }
+    
+    .feedback.wrong {
+        background: #ffebee;
+        color: #c62828;
+    }
+    
+    .next-btn {
+        width: 100%;
+        background: #11998e;
+        color: white;
+        border: none;
+        padding: 20px;
+        border-radius: 12px;
+        font-size: 1.2em;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+    
+    .next-btn:hover {
+        background: #0d7a6f;
+    }
+    
+    .hint {
+        background: #e0f7fa;
+        border: 2px solid #80deea;
+        padding: 15px;
+        border-radius: 12px;
+        color: #006064;
+    }
+    
+    .results-screen {
+        text-align: center;
+    }
+    
+    .results-card {
+        background: white;
+        border-radius: 20px;
+        padding: 50px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    
+    .trophy {
+        font-size: 6em;
+        margin-bottom: 20px;
+    }
+    
+    .results-title {
+        font-size: 3em;
+        color: #333;
+        margin-bottom: 20px;
+    }
+    
+    .final-score {
+        font-size: 4em;
+        color: #11998e;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    
+    .percentage {
+        font-size: 2em;
+        color: #999;
+        margin-bottom: 30px;
+    }
+    
+    .message {
+        font-size: 1.5em;
+        color: #666;
+        margin-bottom: 40px;
+    }
+    
+    .restart-btn {
+        background: #11998e;
+        color: white;
+        border: none;
+        padding: 20px 40px;
+        border-radius: 12px;
+        font-size: 1.2em;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+    
+    .restart-btn:hover {
+        background: #0d7a6f;
+    }
+</style>
+```
+
+</head>
+<body>
+    <div class="container">
+        <div id="quiz-container"></div>
+    </div>
+
+```
+<script>
+    const sections = [
+        {
+            title: "Introduction to Economics",
+            questions: [
+                {
+                    question: "What is economics primarily concerned with?",
+                    options: [
+                        "How societies organize production and distribution of goods and services",
+                        "How to make as much money as possible",
+                        "Stock market predictions",
+                        "Personal budgeting only"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "Economics tends to ask about priorities. What does this mean?",
+                    options: [
+                        "What time of day to work",
+                        "What to produce and how much",
+                        "Which companies are best",
+                        "How to maximize profits only"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "Which question does economics ask about distribution?",
+                    options: [
+                        "How fast can we deliver products",
+                        "For whom to produce",
+                        "Where to locate warehouses",
+                        "What color packaging to use"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "What does economics ask about actors?",
+                    options: [
+                        "Who should star in commercials",
+                        "Who is organizing and controlling production and distribution",
+                        "Who has the most money",
+                        "Who works the hardest"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "Why study economics for business students?",
+                    options: [
+                        "To pass exams only",
+                        "To analyze the context in which businesses operate",
+                        "To learn accounting",
+                        "To memorize facts"
+                    ],
+                    correct: 1
+                }
+            ]
+        },
+        {
+            title: "UK Housing Crisis Example",
+            questions: [
+                {
+                    question: "According to the lecture, is there a housing shortage in the UK?",
+                    options: [
+                        "Yes, we don't have enough homes",
+                        "No, there are 1.6 million vacant homes",
+                        "Maybe, the data is unclear",
+                        "The lecture doesn't address this"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "What has happened to housing tenure in England since 1980?",
+                    options: [
+                        "Public housing has increased dramatically",
+                        "Owner occupation has increased, private rental and public housing decreased",
+                        "Everything has stayed the same",
+                        "Private rental has decreased"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "Who builds most housing in England today?",
+                    options: [
+                        "Local authorities",
+                        "Housing associations",
+                        "Private enterprise",
+                        "The government"
+                    ],
+                    correct: 2
+                },
+                {
+                    question: "What does the housing example show about distribution?",
+                    options: [
+                        "We need to build more houses urgently",
+                        "The problem may be how housing is distributed, not shortage",
+                        "There are no problems with UK housing",
+                        "Housing is perfectly distributed"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "The housing example asks about 'actors, institutions and power'. What does this mean?",
+                    options: [
+                        "Which celebrities own property",
+                        "Who is building housing and what power do they have in the market",
+                        "How strong construction workers are",
+                        "Which politicians live where"
+                    ],
+                    correct: 1
+                }
+            ]
+        },
+        {
+            title: "Important Economic Concepts",
+            questions: [
+                {
+                    question: "What does 'scarcity' mean in economics?",
+                    options: [
+                        "When shops run out of products",
+                        "Resources are limited relative to wants",
+                        "When things are expensive",
+                        "When there's a shortage"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "What is an opportunity cost?",
+                    options: [
+                        "The cost of a business opportunity",
+                        "What you give up when making a choice",
+                        "The price of goods",
+                        "A discount on products"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "What is the difference between positive and normative economics?",
+                    options: [
+                        "Positive is optimistic, normative is pessimistic",
+                        "Positive describes what is, normative prescribes what should be",
+                        "Positive is good news, normative is bad news",
+                        "There is no difference"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "What are incentives in economics?",
+                    options: [
+                        "Only financial rewards",
+                        "Things that motivate behavior",
+                        "Company bonuses",
+                        "Tax breaks only"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "What is a perverse incentive?",
+                    options: [
+                        "An illegal payment",
+                        "An incentive that produces unintended negative consequences",
+                        "A very large bonus",
+                        "An incentive for bad behavior only"
+                    ],
+                    correct: 1
+                }
+            ]
+        },
+        {
+            title: "Microeconomics",
+            questions: [
+                {
+                    question: "What does microeconomics study?",
+                    options: [
+                        "The economy as a whole",
+                        "Individual actors like producers, consumers, and workers",
+                        "Only small businesses",
+                        "Microscopic organisms"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "Which of these is a topic in microeconomics?",
+                    options: [
+                        "National inflation rates",
+                        "How firms decide what to produce",
+                        "Total GDP of a country",
+                        "National unemployment rates"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "Microeconomics studies consumers. Who can be consumers?",
+                    options: [
+                        "Only individual people",
+                        "Individuals, firms, governmental and non-governmental organizations",
+                        "Only households",
+                        "Only businesses"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "What role do governments play in microeconomics?",
+                    options: [
+                        "They don't appear in microeconomics",
+                        "Regulation and control",
+                        "Only taxation",
+                        "Only spending"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "Microeconomics examines distribution and exchange. This includes:",
+                    options: [
+                        "Only market mechanisms",
+                        "Both market and non-market mechanisms",
+                        "Only government distribution",
+                        "Only private sector exchanges"
+                    ],
+                    correct: 1
+                }
+            ]
+        },
+        {
+            title: "Macroeconomics",
+            questions: [
+                {
+                    question: "What does macroeconomics study?",
+                    options: [
+                        "Individual firms and consumers",
+                        "The economy as a whole",
+                        "Only large corporations",
+                        "International trade only"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "Macroeconomics is generally not focused on:",
+                    options: [
+                        "Inflation",
+                        "Individual actors and their specific decisions",
+                        "Aggregate concepts",
+                        "Employment"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "Which is an example of a macroeconomic topic?",
+                    options: [
+                        "How a firm sets its prices",
+                        "National inflation rate",
+                        "Individual consumer choices",
+                        "A single worker's wage negotiation"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "Which of these is studied in macroeconomics?",
+                    options: [
+                        "How one business operates",
+                        "National unemployment rates",
+                        "Why consumers prefer one product over another",
+                        "How workers negotiate with one employer"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "Trade as studied in macroeconomics refers to:",
+                    options: [
+                        "One person selling to another",
+                        "International trade between countries",
+                        "Bartering goods",
+                        "Stock trading"
+                    ],
+                    correct: 1
+                }
+            ]
+        },
+        {
+            title: "Module Structure & Assessment",
+            questions: [
+                {
+                    question: "What is the textbook for the module?",
+                    options: [
+                        "Principles of Economics by Mankiw",
+                        "Economics for Business by Mulhearn & Vane",
+                        "The Wealth of Nations by Adam Smith",
+                        "Freakonomics by Levitt & Dubner"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "The module covers how many lectures?",
+                    options: [
+                        "10 lectures",
+                        "11 lectures",
+                        "12 lectures",
+                        "15 lectures"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "What type of test is given in teaching week 12?",
+                    options: [
+                        "Essay exam",
+                        "In-person MCQ test",
+                        "Online quiz",
+                        "Group presentation"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "The assignment consists of:",
+                    options: [
+                        "One 1,200 word essay",
+                        "Four data-based questions, each up to 300 words",
+                        "Multiple choice questions only",
+                        "A business plan"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "Why is preparatory work by students essential?",
+                    options: [
+                        "To save time in lectures",
+                        "The module structure requires active student engagement",
+                        "Because the lecturer won't explain everything",
+                        "It's not actually essential"
+                    ],
+                    correct: 1
+                }
+            ]
+        }
+    ];
+
+    let currentSection = 0;
+    let currentQuestion = 0;
+    let selectedAnswer = null;
+    let showResult = false;
+    let score = 0;
+    let answeredQuestions = 0;
+
+    const totalQuestions = sections.reduce((sum, section) => sum + section.questions.length, 0);
+
+    function render() {
+        const container = document.getElementById('quiz-container');
+        
+        if (answeredQuestions === totalQuestions) {
+            container.innerHTML = renderResults();
+        } else {
+            container.innerHTML = renderQuestion();
+        }
+        
+        attachEventListeners();
+    }
+
+    function renderQuestion() {
+        const currentQ = sections[currentSection].questions[currentQuestion];
+        const progress = (answeredQuestions / totalQuestions) * 100;
+        
+        return `
+            <div class="header">
+                <h1>Introduction to Economics Quiz</h1>
+                <div class="section-info">
+                    <div class="section-title">Section ${currentSection + 1}: ${sections[currentSection].title}</div>
+                    <div class="score">Score: ${score}/${answeredQuestions}</div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: ${progress}%"></div>
+                </div>
+                <div class="progress-text">Question ${answeredQuestions + 1} of ${totalQuestions}</div>
+            </div>
+            
+            <div class="question-card">
+                <div class="question-badge">
+                    Question ${currentQuestion + 1} of ${sections[currentSection].questions.length}
+                </div>
+                
+                <div class="question-text">${currentQ.question}</div>
+                
+                <div class="options">
+                    ${currentQ.options.map((option, index) => {
+                        let className = 'option';
+                        if (showResult) {
+                            className += ' disabled';
+                            if (index === currentQ.correct) className += ' correct';
+                            if (index === selectedAnswer && index !== currentQ.correct) className += ' wrong';
+                        }
+                        return `<div class="${className}" data-index="${index}">${option}</div>`;
+                    }).join('')}
+                </div>
+                
+                ${showResult ? `
+                    <div class="feedback ${selectedAnswer === currentQ.correct ? 'correct' : 'wrong'}">
+                        ${selectedAnswer === currentQ.correct 
+                            ? '✓ Correct! Well done!' 
+                            : '✗ Incorrect. The correct answer is highlighted above.'}
+                    </div>
+                    <button class="next-btn" id="next-btn">
+                        ${currentQuestion < sections[currentSection].questions.length - 1 || currentSection < sections.length - 1
+                            ? 'Next Question →'
+                            : 'See Results →'}
+                    </button>
+                ` : `
+                    <div class="hint">💡 Select an answer above to continue</div>
+                `}
+            </div>
+        `;
+    }
+
+    function renderResults() {
+        const percentage = Math.round((score / totalQuestions) * 100);
+        let message = '';
+        
+        if (percentage >= 90) message = "Outstanding! You've mastered the economics basics! 🌟";
+        else if (percentage >= 75) message = "Excellent work! Strong understanding! 👏";
+        else if (percentage >= 60) message = "Good job! Keep studying! 📚";
+        else if (percentage >= 50) message = "Not bad! Review the lecture notes! 💪";
+        else message = "Keep practicing! Review the material! 🎯";
+        
+        return `
+            <div class="results-screen">
+                <div class="results-card">
+                    <div class="trophy">🏆</div>
+                    <div class="results-title">Quiz Complete!</div>
+                    <div class="final-score">${score}/${totalQuestions}</div>
+                    <div class="percentage">${percentage}%</div>
+                    <div class="message">${message}</div>
+                    <button class="restart-btn" id="restart-btn">🔄 Try Again</button>
+                </div>
+            </div>
+        `;
+    }
+
+    function attachEventListeners() {
+        if (!showResult) {
+            document.querySelectorAll('.option:not(.disabled)').forEach(option => {
+                option.addEventListener('click', function() {
+                    handleAnswer(parseInt(this.dataset.index));
+                });
+            });
+        }
+        
+        const nextBtn = document.getElementById('next-btn');
+        if (nextBtn) {
+            nextBtn.addEventListener('click', handleNext);
+        }
+        
+        const restartBtn = document.getElementById('restart-btn');
+        if (restartBtn) {
+            restartBtn.addEventListener('click', restart);
+        }
+    }
+
+    function handleAnswer(index) {
+        if (showResult) return;
+        
+        selectedAnswer = index;
+        showResult = true;
+        answeredQuestions++;
+        
+        if (index === sections[currentSection].questions[currentQuestion].correct) {
+            score++;
+        }
+        
+        render();
+    }
+
+    function handleNext() {
+        if (currentQuestion < sections[currentSection].questions.length - 1) {
+            currentQuestion++;
+        } else if (currentSection < sections.length - 1) {
+            currentSection++;
+            currentQuestion = 0;
+        }
+        
+        selectedAnswer = null;
+        showResult = false;
+        render();
+    }
+
+    function restart() {
+        currentSection = 0;
+        currentQuestion = 0;
+        selectedAnswer = null;
+        showResult = false;
+        score = 0;
+        answeredQuestions = 0;
+        render();
+    }
+
+    render();
+</script>
+```
+
+</body>
+</html>
